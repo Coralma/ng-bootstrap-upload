@@ -27,15 +27,18 @@
         var myApp = angular.module('myApp', ['ng-bootstrap-upload']);
         myApp.controller('MyController', ['$scope','$filter', function($scope, $filter) {
             $scope.uploadOptions = {
-                displaySize : 8,
-                caption: '协议附件',
+                displaySize : 5,
+                /*caption: '协议附件',*/
+                caption: 'Attachments',
+                uploadBtnCaption : "Upload",
+                deleteBtnCaption : "Delete",
                 imageUrlField : 'imgUrl',
                 imageNameField: 'name',
                 heightField: 'h',
                 widthField: 'w',
                 data: [
                     {"name":"test1.jpg", "imgUrl" : "example/images/u1.jpg"},
-                    {"name":"CCCIS EE Exp Report - Coral - (201504-201505) -DRP.jpg", "imgUrl" : "example/images/u2.jpg", "h" : "200", "w" : "200"},
+                    {"name":"test2", "imgUrl" : "example/images/u2.jpg", "h" : "200", "w" : "200"},
                     {"name":"test3.jpg", "imgUrl" : "example/images/u3.jpg", "h" : "200", "w" : "200"},
                     {"name":"test4.jpg", "imgUrl" : "example/images/u4.jpg", "h" : "200", "w" : "200"},
                     {"name":"test5.jpg", "imgUrl" : "example/images/u5.jpg", "h" : "200", "w" : "200"},
@@ -45,7 +48,7 @@
                     {"name":"test9.jpg", "imgUrl" : "example/images/u9.jpg", "h" : "362", "w" : "665"},
                     {"name":"test10.jpg", "imgUrl" : "example/images/u10.jpg"},
                     {"name":"test11.jpg", "imgUrl" : "example/images/u11.jpg"},
-                    {"name":"test12.jpg", "imgUrl" : "example/images/u12.jpg"},
+                    {"name":"CCCIS EE Exp Report - Coral - (201504-201505) -DRP.jpg", "imgUrl" : "example/images/u12.jpg"},
                     {"name":"test13.jpg", "imgUrl" : "example/images/u13.jpg"},
                     {"name":"test14.jpg", "imgUrl" : "example/images/u14.jpg"},
                     {"name":"test15.jpg", "imgUrl" : "example/images/u15.jpg"},
