@@ -16,30 +16,31 @@ angular.module('ng-bootstrap-upload', ['ngFileUpload'])
                 scope.options.caption = scope.options.caption || '附件上传';
                 scope.options.uploadBtnCaption = scope.options.uploadBtnCaption || '上传';
                 scope.options.deleteBtnCaption = scope.options.deleteBtnCaption || '删除';
+                scope.options.data = scope.options.data || [];
                 scope.init = function() {
-                    var dataSize = scope.options.data.length;
-                    var pageSize = scope.options.data.length / scope.options.displaySize;
-                    _.forEach(scope.options.data, function(item) {
-                        item._class= "img-div";
-                        item._selection = false;
-                        item[scope.options.widthField] = item[scope.options.widthField] || "600";
-                        /*if(scope.options.imageName)
-                        if(_.includes(img_type, ))*/
-                    })
-                    // separate group
-                    var loopId = 0, groupId = 1;
-                    scope.groups = _.groupBy(scope.options.data, function(n) {
-                        if(loopId < scope.options.displaySize) {
-                            loopId++;
-                        } else {
-                            loopId = 1;
-                            groupId++;
-                        }
-                        return groupId;
-                    });
                     scope.currentGroupNum = 1;
-                    scope.currentGroup = scope.groups[scope.currentGroupNum];
-                    scope.groupSize = _.size(scope.groups);
+                    scope.currentGroup = [];
+                    scope.groupSize = 0;
+                    if(scope.options.data.length > 0) {
+                        _.forEach(scope.options.data, function(item) {
+                            item._class= "img-div";
+                            item._selection = false;
+                            item[scope.options.widthField] = item[scope.options.widthField] || "600";
+                        })
+                        // separate group
+                        var loopId = 0, groupId = 1;
+                        scope.groups = _.groupBy(scope.options.data, function(n) {
+                            if(loopId < scope.options.displaySize) {
+                                loopId++;
+                            } else {
+                                loopId = 1;
+                                groupId++;
+                            }
+                            return groupId;
+                        });
+                        scope.currentGroup = scope.groups[scope.currentGroupNum];
+                        scope.groupSize = _.size(scope.groups);
+                    }
                     genEmptyData(scope.currentGroup.length);
                 }
                 scope.prev = function() {
@@ -80,6 +81,12 @@ angular.module('ng-bootstrap-upload', ['ngFileUpload'])
                     angular.element("#gallery-bg").css("display" , "none");
                     angular.element("#gallery-show").css("display", "none");
                 }
+
+                // upload function
+                scope.upload = function(files) {
+                    scope.onUpload(files);
+                }
+
                 scope.init();
             },
             template:
@@ -94,7 +101,7 @@ angular.module('ng-bootstrap-upload', ['ngFileUpload'])
                 '<table class="image-gallery">'+
                 '   <tr>' +
                 '       <td class="nav-td"><span ng-class="currentGroupNum > 1 ? \'prev\' : \'prev-disable\'" ng-click="prev()"></span></td>' +
-                '       <td width="10%" ng-repeat="item in currentGroup">' +
+                '       <td width="10%" ng-repeat="item in currentGroup track by $id(item)">' +
                 '           <div>' +
                 '               <div ng-class="item._selection ? \'img-div-selected\' : \'img-div\'">' +
                 '                   <img ng-src="{{item[options.imageUrlField]}}" width="100%" height="100px" ng-click="imgClick(item)" ng-dblclick="imgDblclick(item)">' +
@@ -102,7 +109,7 @@ angular.module('ng-bootstrap-upload', ['ngFileUpload'])
                 '               <div class="image-name" title="{{ item[options.imageNameField] }}">{{ item[options.imageNameField] }}</div>' +
                 '           </div>' +
                 '       </td>' +
-                '       <td width="10%" ng-repeat="ed in emptyData"></td>' +
+                '       <td width="10%" ng-repeat="ed in emptyData track by $id(ed)"></td>' +
                 '       <td class="nav-td"><span ng-class="(currentGroupNum < groupSize) ? \'next\' : \'next-disable\'" ng-click="next()"></span></td>' +
                 '   </tr>' +
                 '</table>' +

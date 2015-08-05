@@ -19,5 +19,5 @@ npm-debug.log
 .idea/
 target/
 *.iml
-lib/
-
+lib
+uploads
