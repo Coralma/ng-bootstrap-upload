@@ -1,0 +1,121 @@
+.image-gallery {
+    table-layout: fixed;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    width: 100%;
+}
+
+.image-gallery td {
+    padding: 5px;
+}
+
+.image-gallery .nav-td {
+    width: 30px;
+}
+
+.image-gallery td .img-div {
+    border: 1px solid #ccc;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.image-gallery td .img-div:hover {
+    border: 1px solid #17ccd2;
+    background-color: #ccc;
+}
+
+.image-gallery td .img-div-selected {
+    border: 1px solid #17CCD2;
+    background-color: #5699D2;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.image-gallery td .image-name {
+    font-size: 10px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+
+.bootstrap-upload-gallery .upload-act-btn {
+    margin-left: 10px;
+}
+
+.bootstrap-upload-gallery .upload-del-btn {
+    margin-left: 5px;
+}
+
+.prev {
+    background: url("img/prevAndNext.png") no-repeat;
+    display: block;
+    cursor: pointer;
+    width: 30px;
+    height: 50px;
+}
+
+.prev-disable {
+    background: url("img/prevAndNext.png") no-repeat 0px -70px;
+    display: block;
+    cursor: pointer;
+    width: 30px;
+    height: 50px;
+}
+
+.next {
+    background: url("img/prevAndNext.png") no-repeat -175px 0px;
+    display: block;
+    cursor: pointer;
+    width: 30px;
+    height: 50px;
+}
+
+.next-disable {
+    background: url("img/prevAndNext.png") no-repeat -175px -70px;
+    display: block;
+    cursor: pointer;
+    width: 30px;
+    height: 50px;
+}
+
+#gallery-bg {
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 99001;
+    -moz-opacity: 0.5;
+    opacity: .50;
+    filter: alpha(opacity=50);
+}
+
+#gallery-show {
+    display: none;
+    position: fixed;
+    top: 50px;
+    left: 22%;
+    /*padding: 8px;*/
+    border: 8px solid #fff;
+    background-color: white;
+    z-index: 99002;
+    overflow: auto;
+    -moz-box-shadow: 10px 10px 5px #595959;
+    -webkit-box-shadow: 10px 10px 5px #595959;
+    box-shadow: 10px 10px 5px #595959;
+}
+
+#fbplus-close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 30px;
+    height: 30px;
+    background: transparent url('img/fbplus.png') -40px 0px;
+    cursor: pointer;
+    z-index: 99999103;
+    display: none;
+}

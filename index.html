@@ -1,0 +1,59 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/lodash/lodash.js"></script>
+    <script src="lib/ng-file-upload/ng-file-upload-all.min.js"></script>
+    <script src="dist/ng-bootstrap-upload.js"></script>
+
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="dist/css/ng-bootstrap-upload.css">
+    <style>
+        body {
+            font-family: 'Microsoft YaHei','Arial','SimSun';
+            font-size: 12px;
+        }
+        .top-20 {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body ng-controller="MyController">
+    <div class="container top-20">
+        <ng-upload options="uploadOptions"></ng-upload>
+    </div>
+    <script type="text/javascript">
+        var myApp = angular.module('myApp', ['ng-bootstrap-upload']);
+        myApp.controller('MyController', ['$scope','$filter', function($scope, $filter) {
+            $scope.uploadOptions = {
+                displaySize : 8,
+                caption: '协议附件',
+                imageUrlField : 'imgUrl',
+                imageNameField: 'name',
+                heightField: 'h',
+                widthField: 'w',
+                data: [
+                    {"name":"test1.jpg", "imgUrl" : "example/images/u1.jpg"},
+                    {"name":"CCCIS EE Exp Report - Coral - (201504-201505) -DRP.jpg", "imgUrl" : "example/images/u2.jpg", "h" : "200", "w" : "200"},
+                    {"name":"test3.jpg", "imgUrl" : "example/images/u3.jpg", "h" : "200", "w" : "200"},
+                    {"name":"test4.jpg", "imgUrl" : "example/images/u4.jpg", "h" : "200", "w" : "200"},
+                    {"name":"test5.jpg", "imgUrl" : "example/images/u5.jpg", "h" : "200", "w" : "200"},
+                    {"name":"test6.jpg", "imgUrl" : "example/images/u6.jpg", "h" : "200", "w" : "200"},
+                    {"name":"test7.jpg", "imgUrl" : "example/images/u7.jpg", "h" : "200", "w" : "200"},
+                    {"name":"test8.jpg", "imgUrl" : "example/images/u8.jpg", "h" : "328", "w" : "650"},
+                    {"name":"test9.jpg", "imgUrl" : "example/images/u9.jpg", "h" : "362", "w" : "665"},
+                    {"name":"test10.jpg", "imgUrl" : "example/images/u10.jpg"},
+                    {"name":"test11.jpg", "imgUrl" : "example/images/u11.jpg"},
+                    {"name":"test12.jpg", "imgUrl" : "example/images/u12.jpg"},
+                    {"name":"test13.jpg", "imgUrl" : "example/images/u13.jpg"},
+                    {"name":"test14.jpg", "imgUrl" : "example/images/u14.jpg"},
+                    {"name":"test15.jpg", "imgUrl" : "example/images/u15.jpg"},
+                    {"name":"test16.jpg", "imgUrl" : "example/images/u16.jpg"},
+                    {"name":"test17.gif", "imgUrl" : "example/images/u17.gif"},
+                ]
+            };
+        }]);
+    </script>
+</body>
+</html>

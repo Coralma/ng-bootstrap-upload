@@ -1,0 +1,26 @@
+{
+  "name": "ng-bootstrap-upload",
+  "version": "1.0.1",
+  "homepage": "https://github.com/Coralma/ng-bootstrap-upload",
+  "authors": [
+    "Coral <maqujun@yahoo.com>"
+  ],
+  "keywords": [
+    "angular",
+    "upload"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.3",
+    "ng-file-upload": "~6.0.3",
+    "bootstrap": "~3.3.5",
+    "lodash": "~3.10.1"
+  }
+}
