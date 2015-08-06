@@ -84,14 +84,16 @@ angular.module('ng-bootstrap-upload', ['ngFileUpload'])
 
                 // upload function
                 scope.upload = function(files) {
-                    scope.onUpload(files);
+                    if(scope.onUpload && !_.isEmpty(files)) {
+                        scope.onUpload(files);
+                    }
                 }
 
                 scope.init();
             },
             template:
                 '<div class="bootstrap-upload-gallery">' +
-                '<span>{{options.caption}}</span>' +
+                '<label>{{options.caption}}</label>' +
                 '<button class="btn btn-default upload-act-btn" type="button" ngf-select ngf-change="upload($files)" ngf-multiple="true">' +
                 '   <span class="glyphicon glyphicon-upload"></span> {{ options.uploadBtnCaption }}' +
                 '</button>' +

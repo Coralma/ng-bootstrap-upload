@@ -27,21 +27,19 @@
         var myApp = angular.module('myApp', ['ng-bootstrap-upload']);
         myApp.controller('MyController', ['$scope','$filter','Upload', function($scope, $filter, Upload) {
             $scope.fileUpload = function(files) {
-                if(!_.isEmpty(files)) {
-                    for (var i = 0; i < files.length; i++) {
-                        var file = files[i];
-                        Upload.upload({
-                            url: '/upload',
-                            file: file
-                        }).progress(function (evt) {
-                            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                            console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
-                        }).success(function (data, status, headers, config) {
-                            console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
-                        }).error(function (data, status, headers, config) {
-                            console.log('error status: ' + status);
-                        })
-                    }
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    Upload.upload({
+                        url: '/upload',
+                        file: file
+                    }).progress(function (evt) {
+                        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                        console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+                    }).success(function (data, status, headers, config) {
+                        console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+                    }).error(function (data, status, headers, config) {
+                        console.log('error status: ' + status);
+                    })
                 }
             }
 
