@@ -21,7 +21,7 @@
 </head>
 <body ng-controller="MyController">
     <div class="container top-20">
-        <ng-upload options="uploadOptions" on-upload="fileUpload"></ng-upload>
+        <ng-upload options="uploadOptions" on-upload="fileUpload" on-file-click="fileDownload"></ng-upload>
     </div>
     <script type="text/javascript">
         var myApp = angular.module('myApp', ['ng-bootstrap-upload']);
@@ -43,6 +43,10 @@
                 }
             }
 
+            $scope.fileDownload = function(file) {
+                console.log(JSON.stringify(file));
+            }
+
             $scope.uploadOptions = {
                 displaySize : 8,
                 /*caption: '协议附件',*/
@@ -54,11 +58,11 @@
                 heightField: 'h',
                 widthField: 'w',
                 data: [
-                    {"name":"test1.jpg", "imgUrl" : "example/images/u1.jpg"},
+                    {"name":"readme.doc", "imgUrl" : "dist/css/img/word.png"},
                     {"name":"test2.jpg", "imgUrl" : "example/images/u2.jpg", "h" : "200", "w" : "200"},
                     {"name":"test3.jpg", "imgUrl" : "example/images/u3.jpg", "h" : "200", "w" : "200"},
                     {"name":"test4.jpg", "imgUrl" : "example/images/u4.jpg", "h" : "200", "w" : "200"},
-                    /*{"name":"test5.jpg", "imgUrl" : "example/images/u5.jpg", "h" : "200", "w" : "200"},
+                    {"name":"test5.jpg", "imgUrl" : "example/images/u5.jpg", "h" : "200", "w" : "200"},
                     {"name":"test6.jpg", "imgUrl" : "example/images/u6.jpg", "h" : "200", "w" : "200"},
                     {"name":"test7.jpg", "imgUrl" : "example/images/u7.jpg", "h" : "200", "w" : "200"},
                     {"name":"test8.jpg", "imgUrl" : "example/images/u8.jpg", "h" : "328", "w" : "650"},
@@ -69,8 +73,8 @@
                     {"name":"test13.jpg", "imgUrl" : "example/images/u13.jpg"},
                     {"name":"test14.jpg", "imgUrl" : "example/images/u14.jpg"},
                     {"name":"test15.jpg", "imgUrl" : "example/images/u15.jpg"},
-                    {"name":"test16.jpg", "imgUrl" : "example/images/u16.jpg"},
-                    {"name":"test17.gif", "imgUrl" : "example/images/u17.gif"},*/
+                    {"name":"test16.jpg", "imgUrl" : "example/images/u16.jpg", "h" : "500", "w" : "800"},
+                    {"name":"test17.gif", "imgUrl" : "example/images/u17.gif"},
                 ]
             };
         }]);

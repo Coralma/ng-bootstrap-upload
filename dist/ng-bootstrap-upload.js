@@ -9,7 +9,8 @@ angular.module('ng-bootstrap-upload', ['ngFileUpload'])
             scope: {
                 options: '=',
                 onDelete: '=',
-                onUpload: '='
+                onUpload: '=',
+                onFileClick: '='
             },
             link: function (scope, element, attrs) {
                 scope.options.displaySize = scope.options.displaySize || 10;
@@ -69,15 +70,24 @@ angular.module('ng-bootstrap-upload', ['ngFileUpload'])
                     item._selection = !item._selection;
                 }
                 scope.imgDblclick =function(item) {
-                    scope.selectedItem = item;
-                    angular.element("#gallery-bg").css("display" , "block");
-                    var showDiv = angular.element("#gallery-show");
-                    showDiv.css("display", "block");
-                    var size = $(window).width() - parseInt(item[scope.options.widthField]);
-                    showDiv.css("left", size / 2);
-                    console.log("window width: " + (size / 2));
+                    var fileName = item[scope.options.imageNameField];
+                    var extName = fileName.split('.').pop();
+                    if(_.includes(IMG_TYPE, extName)) {
+                        scope.selectedItem = item;
+                        angular.element("#gallery-bg").css("display" , "block");
+                        var showDiv = angular.element("#gallery-show");
+                        showDiv.css("display", "block");
+                        var size = $(window).width() - parseInt(item[scope.options.widthField]);
+                        showDiv.css("left", size / 2);
+                        console.log("window width: " + (size / 2));
+                    } else {
+                        if(scope.onFileClick) {
+                            scope.onFileClick(item);
+                        }
+                    }
                 }
                 scope.hideFancyImg = function() {
+                    scope.selectedItem = {};
                     angular.element("#gallery-bg").css("display" , "none");
                     angular.element("#gallery-show").css("display", "none");
                 }
@@ -88,7 +98,16 @@ angular.module('ng-bootstrap-upload', ['ngFileUpload'])
                         scope.onUpload(files);
                     }
                 }
-
+                if (scope.options.onRegisterApi) {
+                    scope.options.onRegisterApi({
+                        getSelectedRows: function () {
+                            return [];
+                        },
+                        refresh: function () {
+                            scope.init();
+                        }
+                    });
+                }
                 scope.init();
             },
             template:
