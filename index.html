@@ -21,7 +21,7 @@
 </head>
 <body ng-controller="MyController">
     <div class="container top-20">
-        <ng-upload options="uploadOptions" on-upload="fileUpload" on-file-click="fileDownload"></ng-upload>
+        <ng-upload options="uploadOptions" on-upload="fileUpload" on-file-click="fileDownload" on-delete="fileDelete"></ng-upload>
     </div>
     <script type="text/javascript">
         var myApp = angular.module('myApp', ['ng-bootstrap-upload']);
@@ -45,6 +45,10 @@
 
             $scope.fileDownload = function(file) {
                 console.log(JSON.stringify(file));
+            }
+
+            $scope.fileDelete= function(files) {
+                console.log(JSON.stringify(files));
             }
 
             $scope.uploadOptions = {

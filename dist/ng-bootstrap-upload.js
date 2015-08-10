@@ -91,11 +91,20 @@ angular.module('ng-bootstrap-upload', ['ngFileUpload'])
                     angular.element("#gallery-bg").css("display" , "none");
                     angular.element("#gallery-show").css("display", "none");
                 }
+                scope.getSelectedFiles = function() {
+                    return _.filter(scope.options.data, {"_selection" : true});
+                }
 
                 // upload function
                 scope.upload = function(files) {
                     if(scope.onUpload && !_.isEmpty(files)) {
                         scope.onUpload(files);
+                    }
+                }
+                // delete function
+                scope.delete = function() {
+                    if(scope.onDelete) {
+                        scope.onDelete(scope.getSelectedFiles());
                     }
                 }
                 if (scope.options.onRegisterApi) {
@@ -116,7 +125,7 @@ angular.module('ng-bootstrap-upload', ['ngFileUpload'])
                 '<button class="btn btn-default upload-act-btn" type="button" ngf-select ngf-change="upload($files)" ngf-multiple="true">' +
                 '   <span class="glyphicon glyphicon-upload"></span> {{ options.uploadBtnCaption }}' +
                 '</button>' +
-                '<button class="btn btn-default upload-del-btn" type="button">' +
+                '<button class="btn btn-default upload-del-btn" type="button" ng-click="delete()">' +
                 '   <span class="glyphicon glyphicon-remove-circle"></span> {{ options.deleteBtnCaption }}' +
                 '</button>' +
                 '<table class="image-gallery">'+
