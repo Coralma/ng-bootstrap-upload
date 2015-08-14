@@ -48,6 +48,9 @@
             }
 
             $scope.fileDelete= function(files) {
+                _.remove($scope.uploadOptions.data, function(data) {
+                    return _.includes(files, data);
+                });
                 console.log(JSON.stringify(files));
             }
 

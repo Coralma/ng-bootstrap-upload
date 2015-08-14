@@ -144,7 +144,7 @@ angular.module('ng-bootstrap-upload', ['ngFileUpload'])
                 '   </tr>' +
                 '</table>' +
                 '<div id="gallery-bg" ng-click="hideFancyImg()"></div>' +
-                '<div id="gallery-show">' +
+                '<div id="gallery-show" ng-dblclick="hideFancyImg()">' +
                 '       <img src="{{ selectedItem[options.imageUrlField] }}" height="{{selectedItem[options.heightField]}}" width="{{selectedItem[options.widthField]}}">' +
                 '       <a id="fbplus-close" style="display: block;" ng-click="hideFancyImg()"></a>' +
                 '</div>' +
