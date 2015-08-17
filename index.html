@@ -51,6 +51,7 @@
                 _.remove($scope.uploadOptions.data, function(data) {
                     return _.includes(files, data);
                 });
+                $scope.uploadApi.refresh();
                 console.log(JSON.stringify(files));
             }
 
@@ -64,6 +65,9 @@
                 imageNameField: 'name',
                 heightField: 'h',
                 widthField: 'w',
+                onRegisterApi : function(uploadApi){
+                    $scope.uploadApi = uploadApi;
+                },
                 data: [
                     {"name":"readme.doc", "imgUrl" : "dist/css/img/word.png"},
                     {"name":"test2.jpg", "imgUrl" : "example/images/u2.jpg", "h" : "200", "w" : "200"},

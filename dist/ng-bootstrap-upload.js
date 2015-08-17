@@ -19,9 +19,9 @@ angular.module('ng-bootstrap-upload', ['ngFileUpload'])
                 scope.options.deleteBtnCaption = scope.options.deleteBtnCaption || '删除';
                 scope.options.data = scope.options.data || [];
                 scope.init = function() {
-                    scope.currentGroupNum = 1;
+                    scope.currentGroupNum = scope.currentGroupNum || 1;
                     scope.currentGroup = [];
-                    scope.groupSize = 0;
+                    scope.groupSize = scope.groupSize || 0;
                     if(scope.options.data.length > 0) {
                         _.forEach(scope.options.data, function(item) {
                             item._class= "img-div";
@@ -40,10 +40,14 @@ angular.module('ng-bootstrap-upload', ['ngFileUpload'])
                             return groupId;
                         });
                         scope.currentGroup = scope.groups[scope.currentGroupNum];
+                        if(angular.isUndefined(scope.currentGroup) && scope.currentGroupNum > 0) {
+                            scope.prev();
+                        }
                         scope.groupSize = _.size(scope.groups);
                     }
                     genEmptyData(scope.currentGroup.length);
                 }
+
                 scope.prev = function() {
                     if(scope.currentGroupNum > 1) {
                         scope.currentGroupNum = scope.currentGroupNum - 1;
