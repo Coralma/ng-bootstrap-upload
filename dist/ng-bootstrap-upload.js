@@ -19,6 +19,7 @@ angular.module('ng-bootstrap-upload', ['ngFileUpload'])
                 scope.options.deleteBtnCaption = scope.options.deleteBtnCaption || '删除';
                 scope.options.data = scope.options.data || [];
                 scope.init = function() {
+                    // When refresh the UI the gallery don't back to first stage. Keep it in current stage.
                     scope.currentGroupNum = scope.currentGroupNum || 1;
                     scope.currentGroup = [];
                     scope.groupSize = scope.groupSize || 0;
@@ -40,7 +41,7 @@ angular.module('ng-bootstrap-upload', ['ngFileUpload'])
                             return groupId;
                         });
                         scope.currentGroup = scope.groups[scope.currentGroupNum];
-                        if(angular.isUndefined(scope.currentGroup) && scope.currentGroupNum > 0) {
+                        if(angular.isUndefined(scope.currentGroup)) {
                             scope.prev();
                         }
                         scope.groupSize = _.size(scope.groups);
