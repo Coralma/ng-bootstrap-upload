@@ -14,6 +14,7 @@ angular.module('ng-bootstrap-upload', ['ngFileUpload'])
             },
             link: function (scope, element, attrs) {
                 scope.options.displaySize = scope.options.displaySize || 10;
+                scope.tdWidth = (100 / scope.options.displaySize) + "%";
                 scope.options.caption = scope.options.caption || '附件上传';
                 scope.options.uploadBtnCaption = scope.options.uploadBtnCaption || '上传';
                 scope.options.deleteBtnCaption = scope.options.deleteBtnCaption || '删除';
@@ -136,7 +137,7 @@ angular.module('ng-bootstrap-upload', ['ngFileUpload'])
                 '<table class="image-gallery">'+
                 '   <tr>' +
                 '       <td class="nav-td"><span ng-class="currentGroupNum > 1 ? \'prev\' : \'prev-disable\'" ng-click="prev()"></span></td>' +
-                '       <td width="10%" ng-repeat="item in currentGroup track by $id(item)">' +
+                '       <td width="{{tdWidth}}" ng-repeat="item in currentGroup track by $id(item)">' +
                 '           <div>' +
                 '               <div ng-class="item._selection ? \'img-div-selected\' : \'img-div\'">' +
                 '                   <img ng-src="{{item[options.imageUrlField]}}" width="100%" height="100px" ng-click="imgClick(item)" ng-dblclick="imgDblclick(item)">' +
@@ -144,7 +145,7 @@ angular.module('ng-bootstrap-upload', ['ngFileUpload'])
                 '               <div class="image-name" title="{{ item[options.imageNameField] }}">{{ item[options.imageNameField] }}</div>' +
                 '           </div>' +
                 '       </td>' +
-                '       <td width="10%" ng-repeat="ed in emptyData track by $id(ed)"></td>' +
+                '       <td width="{{tdWidth}}" ng-repeat="ed in emptyData track by $id(ed)"></td>' +
                 '       <td class="nav-td"><span ng-class="(currentGroupNum < groupSize) ? \'next\' : \'next-disable\'" ng-click="next()"></span></td>' +
                 '   </tr>' +
                 '</table>' +
